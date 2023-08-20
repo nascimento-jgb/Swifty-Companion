@@ -9,6 +9,7 @@ import Foundation
 
 struct Campus: Codable {
     let id: Int
-    let name: String
-    let users_count: Int
+    let login: String
+    let first_name: String
+    let last_name: String
 }

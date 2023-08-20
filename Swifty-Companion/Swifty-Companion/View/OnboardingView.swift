@@ -49,10 +49,10 @@ struct OnboardingView: View {
                     // Assuming you have initialized authManager earlier
                     let apiClient = APIClient(authenticationManager: authManager)
                     ///v2/campus?page[size]=100
-                    apiClient.makeAuthenticatedRequest(endpoint: "/v2/campus/13") { result in
+                    apiClient.makeAuthenticatedRequest(endpoint: "/v2/campus/13/users?page[size]=100") { result in
                         switch result {
                         case .success(let data):
-                            if let campus = try? JSONDecoder().decode(Campus.self, from: data) {
+                            if let campus = try? JSONDecoder().decode([Campus].self, from: data) {
                                 print("Received campus info:", campus)
                             }
                         case .failure(let error):
