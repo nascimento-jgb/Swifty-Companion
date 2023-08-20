@@ -35,28 +35,39 @@ struct OnboardingView: View {
                 Button{
                     //Instert the action here
                         authManager.authenticate()
-                        
-//                        let apiClient = APIClient(authenticationManager: authManager)
-//                       
-//                        apiClient.makeAuthenticatedRequest(endpoint: "/v2/campus") { (result: Result<[Campus], Error>) in
-//                            switch result {
-//                            case .success(let campusList):
-//                                for campus in campusList {
-//                                    print("ID: \(campus.id), Name: \(campus.name)")
-//                                }
-//                            case .failure(let error):
-//                                print("Error: \(error.localizedDescription)")
-//                            }
-//                        }
                     
                 } label: {
-                    Label("Search", systemImage: "arrow.right")
+                    Label("Authenticate", systemImage: "")
                         .padding(20)
                         .frame(maxWidth: .infinity)
                         .background(.gray)
                         .foregroundColor(.white)
                         .shadow(color: .gray, radius: 20, x:0, y: 10)
                 }
+                
+                Button {
+                    // Assuming you have initialized authManager earlier
+                    let apiClient = APIClient(authenticationManager: authManager)
+                    ///v2/campus?page[size]=100
+                    apiClient.makeAuthenticatedRequest(endpoint: "/v2/campus/13") { result in
+                        switch result {
+                        case .success(let data):
+                            if let campus = try? JSONDecoder().decode(Campus.self, from: data) {
+                                print("Received campus info:", campus)
+                            }
+                        case .failure(let error):
+                            print("Error:", error.localizedDescription)
+                        }
+                    }
+                } label: {
+                    Text("Test API Request")
+                        .padding(20)
+                        .frame(maxWidth: .infinity)
+                        .background(.gray)
+                        .foregroundColor(.white)
+                        .shadow(color: .gray, radius: 20, x: 0, y: 10)
+                }
+                .disabled(authManager.oauthToken == nil)
                 
                 Spacer()
             }

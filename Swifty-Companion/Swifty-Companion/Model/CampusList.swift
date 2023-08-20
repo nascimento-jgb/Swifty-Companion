@@ -10,4 +10,5 @@ import Foundation
 struct Campus: Codable {
     let id: Int
     let name: String
+    let users_count: Int
 }

@@ -4,7 +4,6 @@
 //
 //  Created by Joao Nascimento on 20.8.2023.
 //
-
 import Foundation
 
 class APIClient {
@@ -15,7 +14,7 @@ class APIClient {
         self.authenticationManager = authenticationManager
     }
 
-    func makeAuthenticatedRequest<T: Codable>(endpoint: String, completion: @escaping (Result<T, Error>) -> Void) {
+    func makeAuthenticatedRequest(endpoint: String, completion: @escaping (Result<Data, Error>) -> Void) {
         guard let accessToken = authenticationManager.oauthToken else {
             let error = NSError(domain: "YourAppErrorDomain", code: 401, userInfo: [NSLocalizedDescriptionKey: "Access token is missing"])
             completion(.failure(error))
@@ -39,12 +38,10 @@ class APIClient {
             }
 
             if let data = data {
-                do {
-                    let decodedObject = try JSONDecoder().decode(T.self, from: data)
-                    completion(.success(decodedObject))
-                } catch {
-                    completion(.failure(error))
-                }
+                completion(.success(data))
+            } else {
+                let error = NSError(domain: "YourAppErrorDomain", code: 500, userInfo: [NSLocalizedDescriptionKey: "No data received"])
+                completion(.failure(error))
             }
         }.resume()
     }
