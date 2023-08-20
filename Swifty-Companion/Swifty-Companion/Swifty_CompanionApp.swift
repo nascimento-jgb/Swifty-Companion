@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import OAuthSwift
 
 @main
 struct Swifty_CompanionApp: App {
     var body: some Scene {
         WindowGroup {
             OnboardingView()
+                .onOpenURL(perform: { url in
+                    OAuthSwift.handle(url: url)
+                })
         }
     }
 }

@@ -11,6 +11,9 @@
 		B98EC8C52A912396006DCF27 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8C42A912396006DCF27 /* OnboardingView.swift */; };
 		B98EC8C72A912397006DCF27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B98EC8C62A912397006DCF27 /* Assets.xcassets */; };
 		B98EC8CA2A912397006DCF27 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B98EC8C92A912397006DCF27 /* Preview Assets.xcassets */; };
+		B98EC8D52A91EA8E006DCF27 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8D42A91EA8E006DCF27 /* AuthenticationManager.swift */; };
+		B98EC8D82A91EB4C006DCF27 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B98EC8D72A91EB4C006DCF27 /* OAuthSwift */; };
+		B98EC8DA2A91F603006DCF27 /* 42API-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B98EC8D92A91F603006DCF27 /* 42API-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		B98EC8C42A912396006DCF27 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		B98EC8C62A912397006DCF27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B98EC8C92A912397006DCF27 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B98EC8D42A91EA8E006DCF27 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		B98EC8D92A91F603006DCF27 /* 42API-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "42API-Info.plist"; sourceTree = "<group>"; };
+		B98EC8DD2A920FFE006DCF27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B98EC8D82A91EB4C006DCF27 /* OAuthSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,12 +58,15 @@
 		B98EC8C12A912396006DCF27 /* Swifty-Companion */ = {
 			isa = PBXGroup;
 			children = (
+				B98EC8DD2A920FFE006DCF27 /* Info.plist */,
+				B98EC8D32A91EA59006DCF27 /* Services */,
 				B98EC8D22A9123B6006DCF27 /* Style */,
 				B98EC8D12A9123B1006DCF27 /* Model */,
 				B98EC8D02A9123A7006DCF27 /* View */,
 				B98EC8C22A912396006DCF27 /* Swifty_CompanionApp.swift */,
 				B98EC8C62A912397006DCF27 /* Assets.xcassets */,
 				B98EC8C82A912397006DCF27 /* Preview Content */,
+				B98EC8D92A91F603006DCF27 /* 42API-Info.plist */,
 			);
 			path = "Swifty-Companion";
 			sourceTree = "<group>";
@@ -91,6 +101,14 @@
 			path = Style;
 			sourceTree = "<group>";
 		};
+		B98EC8D32A91EA59006DCF27 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B98EC8D42A91EA8E006DCF27 /* AuthenticationManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,6 +125,9 @@
 			dependencies = (
 			);
 			name = "Swifty-Companion";
+			packageProductDependencies = (
+				B98EC8D72A91EB4C006DCF27 /* OAuthSwift */,
+			);
 			productName = "Swifty-Companion";
 			productReference = B98EC8BF2A912396006DCF27 /* Swifty-Companion.app */;
 			productType = "com.apple.product-type.application";
@@ -135,6 +156,9 @@
 				Base,
 			);
 			mainGroup = B98EC8B62A912396006DCF27;
+			packageReferences = (
+				B98EC8D62A91EB4C006DCF27 /* XCRemoteSwiftPackageReference "OAuthSwift" */,
+			);
 			productRefGroup = B98EC8C02A912396006DCF27 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -149,6 +173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B98EC8DA2A91F603006DCF27 /* 42API-Info.plist in Resources */,
 				B98EC8CA2A912397006DCF27 /* Preview Assets.xcassets in Resources */,
 				B98EC8C72A912397006DCF27 /* Assets.xcassets in Resources */,
 			);
@@ -162,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B98EC8C52A912396006DCF27 /* OnboardingView.swift in Sources */,
+				B98EC8D52A91EA8E006DCF27 /* AuthenticationManager.swift in Sources */,
 				B98EC8C32A912396006DCF27 /* Swifty_CompanionApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +320,7 @@
 				DEVELOPMENT_TEAM = KRPJJNJAQG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Swifty-Companion/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -323,6 +350,7 @@
 				DEVELOPMENT_TEAM = KRPJJNJAQG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Swifty-Companion/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -363,6 +391,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B98EC8D62A91EB4C006DCF27 /* XCRemoteSwiftPackageReference "OAuthSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OAuthSwift/OAuthSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B98EC8D72A91EB4C006DCF27 /* OAuthSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B98EC8D62A91EB4C006DCF27 /* XCRemoteSwiftPackageReference "OAuthSwift" */;
+			productName = OAuthSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B98EC8B72A912396006DCF27 /* Project object */;
 }

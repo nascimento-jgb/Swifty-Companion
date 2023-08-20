@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    
+    @StateObject var authManager = AuthenticationManager()
     @State private var searchBarText: String  = ""
     
     var body: some View {
@@ -34,8 +34,9 @@ struct OnboardingView: View {
                 
                 Button{
                     //Instert the action here
+                    authManager.autheticate()
                 } label: {
-                    Label("Search", systemImage: "arrouw.right")
+                    Label("Search", systemImage: "arrow.right")
                         .padding(20)
                         .frame(maxWidth: .infinity)
                         .background(.gray)
