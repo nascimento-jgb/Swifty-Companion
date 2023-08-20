@@ -34,7 +34,21 @@ struct OnboardingView: View {
                 
                 Button{
                     //Instert the action here
-                    authManager.autheticate()
+                        authManager.authenticate()
+                        
+//                        let apiClient = APIClient(authenticationManager: authManager)
+//                       
+//                        apiClient.makeAuthenticatedRequest(endpoint: "/v2/campus") { (result: Result<[Campus], Error>) in
+//                            switch result {
+//                            case .success(let campusList):
+//                                for campus in campusList {
+//                                    print("ID: \(campus.id), Name: \(campus.name)")
+//                                }
+//                            case .failure(let error):
+//                                print("Error: \(error.localizedDescription)")
+//                            }
+//                        }
+                    
                 } label: {
                     Label("Search", systemImage: "arrow.right")
                         .padding(20)

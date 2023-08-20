@@ -14,6 +14,8 @@
 		B98EC8D52A91EA8E006DCF27 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8D42A91EA8E006DCF27 /* AuthenticationManager.swift */; };
 		B98EC8D82A91EB4C006DCF27 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B98EC8D72A91EB4C006DCF27 /* OAuthSwift */; };
 		B98EC8DA2A91F603006DCF27 /* 42API-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B98EC8D92A91F603006DCF27 /* 42API-Info.plist */; };
+		B98EC8DF2A922220006DCF27 /* ClientAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8DE2A922220006DCF27 /* ClientAPI.swift */; };
+		B98EC8E12A9224D0006DCF27 /* CampusList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8E02A9224D0006DCF27 /* CampusList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		B98EC8D42A91EA8E006DCF27 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		B98EC8D92A91F603006DCF27 /* 42API-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "42API-Info.plist"; sourceTree = "<group>"; };
 		B98EC8DD2A920FFE006DCF27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B98EC8DE2A922220006DCF27 /* ClientAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientAPI.swift; sourceTree = "<group>"; };
+		B98EC8E02A9224D0006DCF27 /* CampusList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 		B98EC8D12A9123B1006DCF27 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B98EC8E02A9224D0006DCF27 /* CampusList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -105,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				B98EC8D42A91EA8E006DCF27 /* AuthenticationManager.swift */,
+				B98EC8DE2A922220006DCF27 /* ClientAPI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -189,6 +195,8 @@
 				B98EC8C52A912396006DCF27 /* OnboardingView.swift in Sources */,
 				B98EC8D52A91EA8E006DCF27 /* AuthenticationManager.swift in Sources */,
 				B98EC8C32A912396006DCF27 /* Swifty_CompanionApp.swift in Sources */,
+				B98EC8DF2A922220006DCF27 /* ClientAPI.swift in Sources */,
+				B98EC8E12A9224D0006DCF27 /* CampusList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
