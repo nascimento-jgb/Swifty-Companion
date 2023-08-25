@@ -24,7 +24,7 @@
 		B98EC8F02A96281B006DCF27 /* XPBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8EF2A96281B006DCF27 /* XPBarView.swift */; };
 		B98EC8F22A962886006DCF27 /* ProfileButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8F12A962886006DCF27 /* ProfileButtonsView.swift */; };
 		B98EC8F42A9628D8006DCF27 /* ProfileScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8F32A9628D8006DCF27 /* ProfileScrollView.swift */; };
-		B98EC8F72A962961006DCF27 /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8F62A962961006DCF27 /* MainViewViewModel.swift */; };
+		B98EC8F92A99022F006DCF27 /* CustomURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8F82A99022F006DCF27 /* CustomURLHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +46,7 @@
 		B98EC8EF2A96281B006DCF27 /* XPBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPBarView.swift; sourceTree = "<group>"; };
 		B98EC8F12A962886006DCF27 /* ProfileButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonsView.swift; sourceTree = "<group>"; };
 		B98EC8F32A9628D8006DCF27 /* ProfileScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScrollView.swift; sourceTree = "<group>"; };
-		B98EC8F62A962961006DCF27 /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
+		B98EC8F82A99022F006DCF27 /* CustomURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomURLHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,6 @@
 				B98EC8D22A9123B6006DCF27 /* Style */,
 				B98EC8D12A9123B1006DCF27 /* Model */,
 				B98EC8D02A9123A7006DCF27 /* View */,
-				B98EC8F52A962941006DCF27 /* ViewModel */,
 				B98EC8C22A912396006DCF27 /* Swifty_CompanionApp.swift */,
 				B98EC8DD2A920FFE006DCF27 /* Info.plist */,
 				B98EC8D92A91F603006DCF27 /* 42API-Info.plist */,
@@ -135,6 +134,7 @@
 			children = (
 				B98EC8D42A91EA8E006DCF27 /* AuthenticationManager.swift */,
 				B98EC8DE2A922220006DCF27 /* APIClient.swift */,
+				B98EC8F82A99022F006DCF27 /* CustomURLHandler.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -148,14 +148,6 @@
 				B98EC8F32A9628D8006DCF27 /* ProfileScrollView.swift */,
 			);
 			path = "Subviews ";
-			sourceTree = "<group>";
-		};
-		B98EC8F52A962941006DCF27 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				B98EC8F62A962961006DCF27 /* MainViewViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,11 +230,11 @@
 				B98EC8C52A912396006DCF27 /* OnboardingView.swift in Sources */,
 				B98EC8D52A91EA8E006DCF27 /* AuthenticationManager.swift in Sources */,
 				B98EC8C32A912396006DCF27 /* Swifty_CompanionApp.swift in Sources */,
+				B98EC8F92A99022F006DCF27 /* CustomURLHandler.swift in Sources */,
 				B98EC8DF2A922220006DCF27 /* APIClient.swift in Sources */,
 				B98EC8EE2A9627D7006DCF27 /* ProfileUpperPart.swift in Sources */,
 				B98EC8E72A93900C006DCF27 /* Coalition.swift in Sources */,
 				B98EC8E32A938B58006DCF27 /* MainProfileView.swift in Sources */,
-				B98EC8F72A962961006DCF27 /* MainViewViewModel.swift in Sources */,
 				B98EC8E12A9224D0006DCF27 /* CampusUser.swift in Sources */,
 				B98EC8F22A962886006DCF27 /* ProfileButtonsView.swift in Sources */,
 				B98EC8EB2A952A81006DCF27 /* ProgressBar.swift in Sources */,

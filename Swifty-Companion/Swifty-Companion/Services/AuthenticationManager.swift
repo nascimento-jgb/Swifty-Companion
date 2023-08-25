@@ -52,8 +52,7 @@ class AuthenticationManager : ObservableObject {
                 guard let oauthSwift = oauthSwift else {
                     return
                 }
-    
-                // Redirect user to authorization URL
+                
                 let _ = oauthSwift.authorize(
                     withCallbackURL: URL(string: "mycoolapp://oauth-callback")!,
                     scope: "public",
@@ -61,17 +60,12 @@ class AuthenticationManager : ObservableObject {
                     completionHandler: { result in
                         switch result {
                         case .success(let (credential, _, _)):
-                            // Handle successful authorization
                             self.oauthToken = credential.oauthToken
                             print("OAuth token: \(credential.oauthToken)")
                         case .failure(let error):
-                            // Handle error
                             print("Authentication error: \(error.localizedDescription)")
                         }
                     }
                 )
             }
-
-
-//
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainProfileView: View {
+    @Binding var apiUser: APIClient?
+
     var body: some View {
         ZStack{
             
@@ -31,6 +33,7 @@ struct MainProfileView: View {
 
 struct MainProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        MainProfileView()
+        return OnboardingView()
+            .environmentObject(AuthenticationManager())
     }
 }
