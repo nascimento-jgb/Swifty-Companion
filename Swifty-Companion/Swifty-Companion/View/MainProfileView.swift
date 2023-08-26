@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainProfileView: View {
-    @Binding var apiUser: APIClient?
+    @ObservedObject var apiUser: APIClient
 
     var body: some View {
         ZStack{
@@ -17,11 +17,11 @@ struct MainProfileView: View {
             
             VStack(alignment: .center, spacing: 14){
                 
-                ProfileUpperPart()
+                ProfileUpperPart(apiUser: apiUser)
             
-                ProfileButtonsView()
+                ProfileButtonsView(apiUser: apiUser)
                 
-                ProfileScrollView()
+                ProfileScrollView(apiUser: apiUser)
                 
             }
             .padding()
@@ -33,7 +33,8 @@ struct MainProfileView: View {
 
 struct MainProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        return OnboardingView()
+        let apiClient = APIClient(authenticationManager: AuthenticationManager())
+        return MainProfileView(apiUser: apiClient)
             .environmentObject(AuthenticationManager())
     }
 }

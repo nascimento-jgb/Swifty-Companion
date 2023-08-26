@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileScrollView: View {
+    @ObservedObject var apiUser: APIClient
+    
     var body: some View {
         ScrollView{
             Text("HEY")
@@ -23,6 +25,8 @@ struct ProfileScrollView: View {
 
 struct ProfileScrollView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileScrollView()
+        let apiClient = APIClient(authenticationManager: AuthenticationManager())
+        return ProfileScrollView(apiUser: apiClient)
+            .environmentObject(AuthenticationManager())
     }
 }

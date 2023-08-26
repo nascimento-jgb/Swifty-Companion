@@ -6,6 +6,11 @@
 //
 import Foundation
 
+enum APIClientError: Error {
+    case userNotFound
+    case apiError(Error)
+}
+
 class APIClient : ObservableObject {
     @Published var data: User?
     @Published var coalition: Coalition?
@@ -13,12 +18,17 @@ class APIClient : ObservableObject {
     @Published var isNotExisting: Bool = false
     
     private let baseURL: String = "https://api.intra.42.fr/v2/users/"
-    private let authenticationManager: AuthenticationManager
+    public var authenticationManager: AuthenticationManager
+    private let urlSession = URLSession.shared
     
     init(authenticationManager: AuthenticationManager) {
         self.authenticationManager = authenticationManager
     }
-
+    
+    func updateAuthenticationManager(_ manager: AuthenticationManager) {
+            authenticationManager = manager
+        }
+    
     func getUserInfo(login: String) async throws -> User? {
         guard let accessToken = authenticationManager.oauthToken else {
             let error = NSError(domain: "YourAppErrorDomain", code: 401, userInfo: [NSLocalizedDescriptionKey: "Access token is missing"])
@@ -35,7 +45,7 @@ class APIClient : ObservableObject {
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         do {
-            let (data, _) = try await URLSession.shared.data(for: request)
+            let (data, _) = try await urlSession.data(for: request)
             let decoder = JSONDecoder()
             let currentUser = try decoder.decode(User.self, from :data)
             return currentUser
@@ -43,6 +53,7 @@ class APIClient : ObservableObject {
             throw error
         }
     }
+    
     
     func getUserCoalition(login: String) async throws -> Coalition? {
         guard let accessToken = authenticationManager.oauthToken else {
@@ -55,33 +66,40 @@ class APIClient : ObservableObject {
             print("Error: Url is empty")
             return nil
         }
-
+        
         var request = URLRequest(url: requestUrl)
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, _) = try await urlSession.data(for: request)
         let decoder = JSONDecoder()
         let currentUserCoalition = try decoder.decode([Coalition].self, from: data)
         let currentUserCoalitionSize = currentUserCoalition.count - 1
-        if (!currentUserCoalition.isEmpty) {
-            for i in 0...currentUserCoalitionSize {
-                if (currentUserCoalition[i].id >= 271 && currentUserCoalition[i].id <= 273) {
-                    return currentUserCoalition[i]
-                }
+        
+        guard !currentUserCoalition.isEmpty else {
+            return nil
+        }
+        
+        for i in 0...currentUserCoalitionSize {
+            if (currentUserCoalition[i].id >= 271 && currentUserCoalition[i].id <= 273) {
+                return currentUserCoalition[i]
             }
         }
+        
         return nil
     }
     
     @MainActor
-        func fetchData (login: String) async {
+        func fetchData (login: String) async throws {
             do {
                 data = try await getUserInfo(login: login)
                 coalition = try await getUserCoalition(login: login)
                 isDataCollected = true
-            } catch {
-                isNotExisting = true
-                print("Error: Couldn't get the info on this user")
-            }
+            } catch APIClientError.userNotFound {
+                    throw APIClientError.userNotFound
+                } catch {
+                    throw APIClientError.apiError(error)
+                }
         }
 }
+
+

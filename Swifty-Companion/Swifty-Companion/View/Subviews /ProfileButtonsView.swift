@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileButtonsView: View {
+    @ObservedObject var apiUser: APIClient
+    
     var body: some View {
         HStack{
             Button{
@@ -43,6 +45,8 @@ struct ProfileButtonsView: View {
 
 struct ProfileButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileButtonsView()
+        let apiClient = APIClient(authenticationManager: AuthenticationManager())
+        return ProfileButtonsView(apiUser: apiClient)
+            .environmentObject(AuthenticationManager())
     }
 }

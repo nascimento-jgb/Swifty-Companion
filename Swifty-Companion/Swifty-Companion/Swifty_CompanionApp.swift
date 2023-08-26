@@ -8,8 +8,6 @@
 import SwiftUI
 import OAuthSwift
 
-
-
 @main
 struct Swifty_CompanionApp: App {
     var body: some Scene {

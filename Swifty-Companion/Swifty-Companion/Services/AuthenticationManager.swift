@@ -14,13 +14,14 @@ class AuthenticationManager : ObservableObject {
     
     private func initializeOAuthSwift() -> OAuth2Swift? {
         if let apiConfig = loadAPIConfig() {
-            return OAuth2Swift(
+            let oauthswift = OAuth2Swift(
                 consumerKey: apiConfig.apiUID,
                 consumerSecret: apiConfig.apiSecret,
                 authorizeUrl: "https://api.intra.42.fr/oauth/authorize",
                 accessTokenUrl: "https://api.intra.42.fr/oauth/token",
                 responseType: "code"
             )
+            return oauthswift
         } else {
             return nil
         }

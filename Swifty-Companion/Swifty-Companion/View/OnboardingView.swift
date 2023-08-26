@@ -9,91 +9,51 @@ import SwiftUI
 
 struct OnboardingView: View {
     @StateObject var authManager = AuthenticationManager()
-    @State var searchBarText: String = ""
-    @State var apiUser: APIClient?
-    @State var isDataAvailable: Bool = false
-//    @State var isLoading: Bool = false
-    
-    init() {
-        _authManager = StateObject(wrappedValue: AuthenticationManager())
-        _apiUser = State(initialValue: nil)
-    }
-    
-    func fetchData() async {
-//            isLoading = true
-//            defer { isLoading = false }
-            await apiUser?.fetchData(login: searchBarText)
-            isDataAvailable = true
-        }
+    @State private var searchBarText: String = ""
+    @State private var isDataAvailable: Bool = false
+    @StateObject private var apiClient: APIClient = APIClient(authenticationManager: AuthenticationManager())
     
     var body: some View {
-        
-        NavigationStack{
-            if(isDataAvailable)
-            { MainProfileView(apiUser: $apiUser) }
-            else {
-                ZStack{
-                    
-                    //42 BACKGROUND ANIMATION HERE
-                    
-                    VStack(alignment: .center, spacing: 24){
-                        
-                        //COMPOSED IMAGE/COLOR WITH BACKGROUND
-                        Spacer()
-                        
-                        Text("SPACE HOLDER 42 LOGO")
-                        TextField("Type here the student login", text: $searchBarText)
-                            .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                            .shadow(radius: 5, x: 0, y: 3)
-                            .padding(20)
-                            .foregroundColor(.white)
-                            .background(Color.gray)
-                            .overlay(RoundedRectangle(cornerRadius: 0, style: .continuous)
-                                .stroke(Color.black.opacity(0.7), lineWidth: 2))
-                            .onChange(of: searchBarText) { newValue in
-                                searchBarText = newValue.lowercased()
-                            }
-                        
-                        Button {
-                            Task.init(priority: .userInitiated) {
-                                await fetchData()
-                            }
-                        } label: {
-                            Text("Test API Request")
-                                .padding(20)
-                                .frame(maxWidth: .infinity)
-                                .background(.gray)
-                                .foregroundColor(.white)
-                                .shadow(color: .gray, radius: 20, x: 0, y: 10)
-                        }
-                        .disabled(searchBarText.isEmpty)
-                        
-                        Spacer()
-                        
-                    }
+        NavigationStack {
+            if isDataAvailable {
+                MainProfileView(apiUser: apiClient)
+            } else {
+                OnboardingContentView(searchBarText: $searchBarText, fetchData: fetchData)
                     .padding(50)
                     .background(.regularMaterial)
                     .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
                     .shadow(radius: 5, x: 0, y: 3)
                     .shadow(radius: 30, x: 0, y: 30)
                     .padding(20)
-                }
-                .task{
-                    authManager.authenticate()
-                    apiUser = APIClient(authenticationManager: authManager)
-                }
-            }
+                    .task {
+                        await authenticateAndFetchData()
+                    }
             }
         }
     }
-
+    
+    private func fetchData() async {
+        do {
+                try await apiClient.fetchData(login: searchBarText)
+                isDataAvailable = true
+            } catch {
+                print("Error fetching data: \(error)")
+            }
+    }
+    
+    private func authenticateAndFetchData() async {
+        authManager.authenticate()
+        apiClient.authenticationManager = authManager
+        await fetchData()
+    }
+}
 
 struct OnboardingView_Previews: PreviewProvider {
-    
     static var previews: some View {
         OnboardingView()
     }
 }
+
 
 
 

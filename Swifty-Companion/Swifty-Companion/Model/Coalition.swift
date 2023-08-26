@@ -8,10 +8,10 @@
 import Foundation
 
 struct Coalition: Codable {
-        let id: Int
-        let name: String
-        let image_url: String
-        let color: String
+    let id: Int
+    let name: String
+    let image_url: String
+    let color: String
 }
 
 struct CoalitionType: Codable {
