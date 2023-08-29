@@ -9,9 +9,9 @@ import SwiftUI
 
 struct OnboardingView: View {
     @StateObject var authManager = AuthenticationManager()
+    @StateObject private var apiClient: APIClient = APIClient(authenticationManager: AuthenticationManager())
     @State private var searchBarText: String = ""
     @State private var isDataAvailable: Bool = false
-    @StateObject private var apiClient: APIClient = APIClient(authenticationManager: AuthenticationManager())
     
     var body: some View {
         NavigationStack {

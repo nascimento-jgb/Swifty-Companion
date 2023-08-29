@@ -8,52 +8,76 @@
 import SwiftUI
 
 struct ProfileUpperPart: View {
-    @ObservedObject var apiUser: APIClient
+//    @ObservedObject var apiUser: APIClient
     
     var body: some View {
         
-        VStack{
-            Circle()
-                .foregroundColor(Color(hex: apiUser.coalition!.color))
-                .frame(width: 160, height: 160)
+        ZStack{
+//            Circle()
+//                .foregroundColor(Color(hex: apiUser.coalition!.color))
+//                .frame(width: 160, height: 160)
             
-            if (apiUser.data!.image.link != nil) {
-               AsyncImage(
-                   url: URL(string: apiUser.data!.image.link!),
-                   content: { image in
-                       image.resizable()
-                           .resizable()
-                           .scaledToFit()
-                           .frame(width: 140, height: 140)
-                           .clipShape(Circle())
-                           .overlay(Circle().stroke(Color.white, lineWidth: 2))
-                           .offset(y: -157)
-                   },
-                   placeholder: {
-                       ProgressView()
-                   }
-               )
-           }
-            else {
-                Image("Incognito")
+            Circle()
+                .foregroundColor(.gray)
+                .frame(width: 160, height: 160)
+                .offset(y: -47)
+            
+            VStack{
+                
+                Image(systemName: "circle")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 140, height: 140)
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.white, lineWidth: 2))
-                    .offset(y: -115)
+                    .padding(.top, 50)
+//                if (apiUser.data!.image.link != nil) {
+//                    AsyncImage(
+//                        url: URL(string: apiUser.data!.image.link!),
+//                        content: { image in
+//                            image.resizable()
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 140, height: 140)
+//                                .clipShape(Circle())
+//                                .overlay(Circle().stroke(Color.white, lineWidth: 2))
+//                                .padding(.top, 50)
+//                        },
+//                        placeholder: {
+//                            ProgressView()
+//                        }
+//                    )
+//                }
+//                else {
+//                    Image("Incognito")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 100, height: 100)
+//                        .clipShape(Circle())
+//                        .overlay(Circle().stroke(Color.white, lineWidth: 2))
+//                        .padding(.top, 50)
+//                }
+                //            Button("Print Cursus Users") {
+                //                    printUser(apiUser: apiUser)
+                //                  }
+                
+//                Text(apiUser.data!.login + " - " + apiUser.coalition!.name)
+//                    .padding(.top, 50)
+//
+//                Text(apiUser.data!.location ?? "N/A")
+//                    .padding(.top, 55)
+                
+                Text("login" + " - " + "name")
+                    .padding()
+                
+                Text("N/A")
+                    .padding(.top, 1)
+                
+//                XPBarView(apiUser: apiUser, xpPercentage: apiUser.data?.cursus_users[1].level ?? 0.0)
+                
+                XPBarView(xpPercentage: 10)
+                    .padding(.top, -25)
             }
-//            Button("Print Cursus Users") {
-//                    printUser(apiUser: apiUser)
-//                  }
-            
-            Text(apiUser.data!.login + " - " + apiUser.coalition!.name)
-                .padding(.top,  -80)
-            
-            Text(apiUser.data!.location ?? "N/A")
-                .padding(.top, -38)
-            
-            XPBarView(apiUser: apiUser, xpPercentage: apiUser.data?.cursus_users[1].level ?? 0.0)
         }
     }
     
@@ -96,10 +120,41 @@ struct ProfileUpperPart: View {
 
 }
 
+//struct ProfileUpperPart_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let apiClient = APIClient(authenticationManager: AuthenticationManager())
+//        return ProfileUpperPart(apiUser: apiClient)
+//            .environmentObject(AuthenticationManager())
+//    }
+//}
+
 struct ProfileUpperPart_Previews: PreviewProvider {
     static var previews: some View {
-        let apiClient = APIClient(authenticationManager: AuthenticationManager())
-        return ProfileUpperPart(apiUser: apiClient)
-            .environmentObject(AuthenticationManager())
+//        let apiClient = APIClient(authenticationManager: AuthenticationManager())
+//        return ProfileUpperPart(apiUser: apiClient)
+//            .environmentObject(AuthenticationManager())
+        return ProfileUpperPart()
     }
 }
+
+//struct ProfileUpperPart_Previews: PreviewProvider {
+//
+//    static var dummyUser: User {
+//        var user = User(login: "testUser", image: Image42(link: "image_url"), location: "N/A", cursus_users: [], achievements: [], projects_users: [] )
+//        let skill = Skill42(id: 1, name: "skill1", level: 5.8)
+//        let cursus = Cursus42(grade: "Learner", level: 5.8, skills: [skill])
+//        user.cursus_users = [cursus]
+//        return user
+//    }
+//
+//    static var previews: some View {
+//        let apiClient = APIClient(authenticationManager: AuthenticationManager())
+//
+//        // set apiClient.data to dummyUser
+//        apiClient.data = dummyUser
+//
+//        return ProfileUpperPart(apiUser: apiClient)
+//            .environmentObject(AuthenticationManager())
+//    }
+//}
+

@@ -27,6 +27,7 @@
 		B98EC8F92A99022F006DCF27 /* CustomURLHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8F82A99022F006DCF27 /* CustomURLHandler.swift */; };
 		B98EC8FB2A9A1A21006DCF27 /* OnboardingContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8FA2A9A1A21006DCF27 /* OnboardingContentView.swift */; };
 		B98EC8FD2A9A27CD006DCF27 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8FC2A9A27CD006DCF27 /* Extensions.swift */; };
+		B98EC8FF2A9E30CE006DCF27 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98EC8FE2A9E30CE006DCF27 /* Project.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		B98EC8F82A99022F006DCF27 /* CustomURLHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomURLHandler.swift; sourceTree = "<group>"; };
 		B98EC8FA2A9A1A21006DCF27 /* OnboardingContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentView.swift; sourceTree = "<group>"; };
 		B98EC8FC2A9A27CD006DCF27 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B98EC8FE2A9E30CE006DCF27 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				B98EC8EF2A96281B006DCF27 /* XPBarView.swift */,
 				B98EC8F12A962886006DCF27 /* ProfileButtonsView.swift */,
 				B98EC8F32A9628D8006DCF27 /* ProfileScrollView.swift */,
+				B98EC8FE2A9E30CE006DCF27 /* Project.swift */,
 			);
 			path = "Subviews ";
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				B98EC8FD2A9A27CD006DCF27 /* Extensions.swift in Sources */,
 				B98EC8EB2A952A81006DCF27 /* ProgressBar.swift in Sources */,
 				B98EC8F02A96281B006DCF27 /* XPBarView.swift in Sources */,
+				B98EC8FF2A9E30CE006DCF27 /* Project.swift in Sources */,
 				B98EC8E52A938D69006DCF27 /* User.swift in Sources */,
 				B98EC8F42A9628D8006DCF27 /* ProfileScrollView.swift in Sources */,
 			);

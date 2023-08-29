@@ -9,44 +9,73 @@ import SwiftUI
 
 struct ProfileButtonsView: View {
     @ObservedObject var apiUser: APIClient
+    @Binding var selectedButton: String
     
     var body: some View {
         HStack{
             Button{
-                
+                selectedButton = "Projects"
             } label: {
-                Text("First button")
-                    .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                Text("Projects")
+                    .padding(4)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 40)
                     .background(.gray)
                     .foregroundColor(.white)
+                //                           .customFont(.body)
+//                    .background(Constants.Colors.primaryColor).opacity(0.9)
+                    .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
+                    .cornerRadius(8, corners: [.topLeft])
+//                    .shadow(color: Constants.Colors.primaryColor, radius: 20, x: 0, y: 10)}
+                                      
             }
             
-            Button{
-                
-            } label: {
-                Text("Second button")
-                    .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                    .background(.gray)
-                    .foregroundColor(.white)
-            }
+            Spacer()
             
             Button{
-                
+                selectedButton = "Achievements"
             } label: {
-                Text("Third button")
-                    .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                Text("Achievements")
+                    .padding(4)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 40)
                     .background(.gray)
                     .foregroundColor(.white)
+                //                           .customFont(.body)
+//                    .background(Constants.Colors.primaryColor).opacity(0.9)
+                    .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
+                    .cornerRadius(8, corners: [.topLeft])
+//                    .shadow(color: Constants.Colors.primaryColor, radius: 20, x: 0, y: 10)}
+            }
+            
+            Spacer()
+            
+            Button{
+                selectedButton = "Skills"
+            } label: {
+                Text("Skills")
+                    .padding(4)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 40)
+                    .background(.gray)
+                    .foregroundColor(.white)
+                //                           .customFont(.body)
+//                    .background(Constants.Colors.primaryColor).opacity(0.9)
+                    .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
+                    .cornerRadius(8, corners: [.topLeft])
+//                    .shadow(color: Constants.Colors.primaryColor, radius: 20, x: 0, y: 10)}
             }
         }
         .padding()
     }
 }
 
+
+
 struct ProfileButtonsView_Previews: PreviewProvider {
     static var previews: some View {
         let apiClient = APIClient(authenticationManager: AuthenticationManager())
-        return ProfileButtonsView(apiUser: apiClient)
+        return ProfileButtonsView(apiUser: apiClient, selectedButton: .constant("Projects"))
             .environmentObject(AuthenticationManager())
     }
 }

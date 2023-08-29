@@ -9,23 +9,24 @@ import SwiftUI
 
 struct MainProfileView: View {
     @ObservedObject var apiUser: APIClient
-
+    @State private var selectedButton = "Projects"
+    
     var body: some View {
         ZStack{
             
             //Insert here coalition type background
             
-            VStack(alignment: .center, spacing: 14){
+            VStack(alignment: .center){
+//                ProfileUpperPart(apiUser: apiUser)
+                ProfileUpperPart()
                 
-                ProfileUpperPart(apiUser: apiUser)
-            
-                ProfileButtonsView(apiUser: apiUser)
+                ProfileButtonsView(apiUser: apiUser, selectedButton: $selectedButton)
                 
-                ProfileScrollView(apiUser: apiUser)
-                
+                ProfileScrollView(apiUser: apiUser, selectedButton: $selectedButton)
             }
             .padding()
         }
+        .frame(maxWidth: .infinity)
     }
 }
 

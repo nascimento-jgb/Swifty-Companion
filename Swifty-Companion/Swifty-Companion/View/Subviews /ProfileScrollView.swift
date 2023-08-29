@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileScrollView: View {
     @ObservedObject var apiUser: APIClient
+    @Binding var selectedButton: String
     
     var body: some View {
         ScrollView{
@@ -26,7 +27,7 @@ struct ProfileScrollView: View {
 struct ProfileScrollView_Previews: PreviewProvider {
     static var previews: some View {
         let apiClient = APIClient(authenticationManager: AuthenticationManager())
-        return ProfileScrollView(apiUser: apiClient)
+        return ProfileScrollView(apiUser: apiClient, selectedButton: .constant("Projects"))
             .environmentObject(AuthenticationManager())
     }
 }
