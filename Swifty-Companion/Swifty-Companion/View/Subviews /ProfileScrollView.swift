@@ -13,9 +13,22 @@ struct ProfileScrollView: View {
     
     var body: some View {
         ScrollView{
-            Text("HEY")
-            Text("HEY")
-            Text("HEY")
+           if (selectedButton == "Projects") {
+               ForEach(apiUser.data?.projects_users ?? [], id: \.id) { projectUser in
+                   SingleProject(name: projectUser.project.name, status: projectUser.status, score: projectUser.final_mark ?? 0)
+               }
+           } else if (selectedButton == "Achievements") {
+               ForEach(apiUser.data?.achievements ?? [], id: \.id) { achievements in
+                   SingleAchievement(name: achievements.name)
+               }
+           }
+//            else if (selectedButton == "Skills") {
+//               ForEach(apiUser.data?.achievements ?? [], id: \.id) { cursus_user in
+//                   ForEach(cursus_user.skills, id: \.id) { skills in
+//                       SingleSkill(name: skills.name , level: skills.level)
+//                   }
+//               }
+//           }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))

@@ -7,19 +7,24 @@
 
 import SwiftUI
 
-struct Project: View {
+struct SingleProject: View {
+    
+    var name: String
+    var status:  String
+    var score: Int
+    
     var body: some View {
         
         VStack{
             HStack(alignment: .center, spacing: 10){
                 VStack(alignment: .leading){
-                    Text("CPP Module 00")
+                    Text(name)
                         .foregroundColor(.green)
-                    Text("1 year ago")
+                    Text(status)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("100")
+                Text("\(score)")
                     .padding(.top, -12)
                     .foregroundColor(.green)
             }
@@ -29,8 +34,8 @@ struct Project: View {
     }
 }
 
-struct Project_Previews: PreviewProvider {
+struct SingleProject_Previews: PreviewProvider {
     static var previews: some View {
-        Project()
+        SingleProject(name: "CPP Module 00", status: "1 year ago", score: 100)
     }
 }
