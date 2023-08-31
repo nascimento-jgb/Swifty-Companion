@@ -14,11 +14,13 @@ struct MainProfileView: View {
     var body: some View {
         ZStack{
             
-            //Insert here coalition type background
+            Image(apiUser.coalitionImage(apiUser: apiUser))
+                .resizable()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
             
             VStack(alignment: .center){
-//                ProfileUpperPart(apiUser: apiUser)
-                ProfileUpperPart()
+                ProfileUpperPart(apiUser: apiUser)
                 
                 ProfileButtonsView(apiUser: apiUser, selectedButton: $selectedButton)
                 
@@ -28,9 +30,8 @@ struct MainProfileView: View {
         }
         .frame(maxWidth: .infinity)
     }
+    
 }
-
-
 
 struct MainProfileView_Previews: PreviewProvider {
     static var previews: some View {

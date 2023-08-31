@@ -15,11 +15,13 @@ struct SingleSkill: View {
     var body: some View {
         VStack{
             HStack(alignment: .center, spacing: 10){
+               
                 Text(name)
-                    
-                Spacer()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(5)
+                    .foregroundColor(.black)
                 
-                Text("\(level)")
+                Text("\(String(format: "%.2f", level))")
                     .foregroundColor(.green)
             }
             .padding(.horizontal, 40)

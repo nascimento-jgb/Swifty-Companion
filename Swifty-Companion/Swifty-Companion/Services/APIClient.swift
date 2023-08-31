@@ -88,6 +88,16 @@ class APIClient : ObservableObject {
         return nil
     }
     
+    func coalitionImage(apiUser: APIClient) -> String {
+        if apiUser.coalition!.name == "The Foragers"{
+            return "foragers_background"
+        } else if apiUser.coalition!.name == "The Guards" {
+            return "guards_background"
+        } else {
+            return "builders_background"
+        }
+    }
+    
     @MainActor
         func fetchData (login: String) async throws {
             do {

@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct XPBarView: View {
-//    @ObservedObject var apiUser: APIClient
+    @ObservedObject var apiUser: APIClient
     var xpPercentage: Double
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("Lvl \(String(format: "%.2f", xpPercentage))")
-                .font(.headline)
+                .font(AppFont.title2)
+                .foregroundColor(.white)
             
-//            ProgressBar(apiUser: apiUser, value: xpPercentage, maxValue: 25)
-//                .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-            
-            ProgressBar(value: xpPercentage, maxValue: 25)
+            ProgressBar(apiUser: apiUser, value: xpPercentage, maxValue: 25)
                 .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+            
         }
         .padding()
     }
@@ -28,8 +27,7 @@ struct XPBarView: View {
 
 struct XPBarView_Previews: PreviewProvider {
     static var previews: some View {
-//        let apiClient = APIClient(authenticationManager: AuthenticationManager())
-//        XPBarView(apiUser: apiClient, xpPercentage: 75)
-        XPBarView(xpPercentage: 15)
+        let apiClient = APIClient(authenticationManager: AuthenticationManager())
+        XPBarView(apiUser: apiClient, xpPercentage: 75)
     }
 }

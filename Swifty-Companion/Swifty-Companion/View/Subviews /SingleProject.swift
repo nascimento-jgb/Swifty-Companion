@@ -24,6 +24,7 @@ struct SingleProject: View {
                     Text(calculateDateDifference())
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(5)
                 
                 Text("\(score)")
                     .padding(.top, -12)

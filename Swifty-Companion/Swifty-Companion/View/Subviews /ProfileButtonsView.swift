@@ -17,17 +17,15 @@ struct ProfileButtonsView: View {
                 selectedButton = "Projects"
             } label: {
                 Text("Projects")
+                    .font(AppFont.header)
                     .padding(4)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
-                    .background(.gray)
+                    .background(Color(hex: apiUser.coalition!.color))
                     .foregroundColor(.white)
-                //                           .customFont(.body)
-//                    .background(Constants.Colors.primaryColor).opacity(0.9)
                     .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
                     .cornerRadius(8, corners: [.topLeft])
-//                    .shadow(color: Constants.Colors.primaryColor, radius: 20, x: 0, y: 10)}
-                                      
+                    .shadow(color: Color(hex: apiUser.coalition!.color), radius: 20, x: 0, y: 10)
             }
             
             Spacer()
@@ -36,16 +34,15 @@ struct ProfileButtonsView: View {
                 selectedButton = "Achievements"
             } label: {
                 Text("Achievements")
+                    .font(AppFont.header)
                     .padding(4)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
-                    .background(.gray)
+                    .background(Color(hex: apiUser.coalition!.color))
                     .foregroundColor(.white)
-                //                           .customFont(.body)
-//                    .background(Constants.Colors.primaryColor).opacity(0.9)
                     .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
                     .cornerRadius(8, corners: [.topLeft])
-//                    .shadow(color: Constants.Colors.primaryColor, radius: 20, x: 0, y: 10)}
+                    .shadow(color: Color(hex: apiUser.coalition!.color), radius: 20, x: 0, y: 10)
             }
             
             Spacer()
@@ -54,16 +51,15 @@ struct ProfileButtonsView: View {
                 selectedButton = "Skills"
             } label: {
                 Text("Skills")
+                    .font(AppFont.header)
                     .padding(4)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
-                    .background(.gray)
+                    .background(Color(hex: apiUser.coalition!.color))
                     .foregroundColor(.white)
-                //                           .customFont(.body)
-//                    .background(Constants.Colors.primaryColor).opacity(0.9)
                     .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
                     .cornerRadius(8, corners: [.topLeft])
-//                    .shadow(color: Constants.Colors.primaryColor, radius: 20, x: 0, y: 10)}
+                    .shadow(color: Color(hex: apiUser.coalition!.color), radius: 20, x: 0, y: 10)
             }
         }
         .padding()

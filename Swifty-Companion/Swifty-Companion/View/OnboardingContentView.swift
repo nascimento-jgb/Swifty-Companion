@@ -13,22 +13,26 @@ struct OnboardingContentView: View {
     
     var body: some View {
         ZStack {
-            // Background animation
             
             VStack(alignment: .center, spacing: 24) {
-                // Composed image/color with background
+                
                 Spacer()
                 
-                Text("SPACE HOLDER 42 LOGO")
+                Image("42logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)
+                    .offset(x: -10)
                 
-                TextField("Type here the student login", text: $searchBarText)
-                    .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                TextField("Student login", text: $searchBarText)
+                    .font(AppFont.title2)
+                    .multilineTextAlignment(.center)
                     .shadow(radius: 5, x: 0, y: 3)
                     .padding(20)
-                    .foregroundColor(.white)
-                    .background(Color.gray)
-                    .overlay(RoundedRectangle(cornerRadius: 0, style: .continuous)
-                        .stroke(Color.black.opacity(0.7), lineWidth: 2))
+                    .foregroundColor(.gray)
+                    .background(.white).opacity(0.9)
+                    .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
+                    .cornerRadius(8, corners: [.topLeft])
                     .onChange(of: searchBarText) { newValue in
                         searchBarText = newValue.lowercased()
                     }
@@ -38,12 +42,16 @@ struct OnboardingContentView: View {
                         await fetchData()
                     }
                 } label: {
-                    Text("Test API Request")
+                    Text("Info Request")
+                        .font(AppFont.title2)
                         .padding(20)
                         .frame(maxWidth: .infinity)
-                        .background(.gray)
+                        .background(.black).opacity(0.9)
                         .foregroundColor(.white)
+                        .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
+                        .cornerRadius(8, corners: [.topLeft])
                         .shadow(color: .gray, radius: 20, x: 0, y: 10)
+                        
                 }
                 .disabled(searchBarText.isEmpty)
                 
@@ -57,7 +65,7 @@ struct OnboardingContentView_Previews: PreviewProvider {
     @State static var searchText: String = ""
     
     static func fetchData() async {
-        // Implement your test data fetching logic here
+        // test data fetching logic here
     }
     
     static var previews: some View {

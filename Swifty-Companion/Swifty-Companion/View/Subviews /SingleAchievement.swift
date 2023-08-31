@@ -13,14 +13,13 @@ struct SingleAchievement: View {
         var body: some View {
             
             VStack{
-                HStack(alignment: .center, spacing: 10){
+                HStack(alignment: .center, spacing: 10) {
                   
-                    Image(systemName: name)
+                    Image(name)
                         .resizable()
                         .scaledToFit()
-                        .foregroundColor(.red)
-                        .frame(width: 60, height: 60)
-                    
+                        .frame(width: 50, height: 50)
+                        .padding(5)
                     
                     Text("\(name)")
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -35,6 +34,6 @@ struct SingleAchievement: View {
 
 struct SingleAchievement_Previews: PreviewProvider {
     static var previews: some View {
-        SingleAchievement(name: "circle")
+        SingleAchievement(name: "42logo")
     }
 }
