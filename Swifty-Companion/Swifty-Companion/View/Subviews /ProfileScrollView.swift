@@ -14,11 +14,11 @@ struct ProfileScrollView: View {
     var body: some View {
         ScrollView{
            if (selectedButton == "Projects") {
-               ForEach(apiUser.data?.projects_users ?? [], id: \.id) { projectUser in
-                   SingleProject(name: projectUser.project.name, status: projectUser.status, score: projectUser.final_mark ?? 0)
+               ForEach(apiUser.data?.projects_users.filter { $0.cursus_ids.first == 21 } ?? [], id: \.id) { projectUser in
+                   SingleProject(name: projectUser.project.name, marked_at: projectUser.marked_at ?? "Not informed", score: projectUser.final_mark ?? 0, status: projectUser.status)
                }
            } else if (selectedButton == "Achievements") {
-               ForEach(apiUser.data?.achievements ?? [], id: \.id) { achievements in
+               ForEach(apiUser.data?.achievements.filter { $0.visible == true } ?? [], id: \.id) { achievements in
                    SingleAchievement(name: achievements.name)
                }
            }
