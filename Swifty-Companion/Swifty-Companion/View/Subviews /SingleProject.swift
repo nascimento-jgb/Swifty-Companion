@@ -21,12 +21,15 @@ struct SingleProject: View {
                 VStack(alignment: .leading){
                     Text(name)
                         .foregroundColor(status == "finished" ? .green : .red)
+                        .font(AppFont.body)
                     Text(calculateDateDifference())
+                        .font(AppFont.body2)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(5)
                 
                 Text("\(score)")
+                    .font(AppFont.body)
                     .padding(.top, -12)
                     .foregroundColor(status == "finished" ? .green : .red)
             }

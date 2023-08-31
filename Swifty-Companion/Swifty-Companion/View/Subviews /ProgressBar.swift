@@ -13,6 +13,7 @@ struct ProgressBar: View {
     var maxValue: Double
     
     var body: some View {
+        
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 Rectangle()
@@ -35,6 +36,5 @@ struct ProgressBar_Previews: PreviewProvider {
     static var previews: some View {
         let apiClient = APIClient(authenticationManager: AuthenticationManager())
         ProgressBar(apiUser: apiClient, value: 75, maxValue: 100)
-//        ProgressBar(value: 75, maxValue: 100)
     }
 }

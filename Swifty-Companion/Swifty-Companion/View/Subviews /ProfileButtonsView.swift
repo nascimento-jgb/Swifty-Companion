@@ -17,7 +17,7 @@ struct ProfileButtonsView: View {
                 selectedButton = "Projects"
             } label: {
                 Text("Projects")
-                    .font(AppFont.header)
+                    .font(AppFont.body3)
                     .padding(4)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
@@ -34,7 +34,7 @@ struct ProfileButtonsView: View {
                 selectedButton = "Achievements"
             } label: {
                 Text("Achievements")
-                    .font(AppFont.header)
+                    .font(AppFont.body3)
                     .padding(4)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
@@ -51,7 +51,7 @@ struct ProfileButtonsView: View {
                 selectedButton = "Skills"
             } label: {
                 Text("Skills")
-                    .font(AppFont.header)
+                    .font(AppFont.body3)
                     .padding(4)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
@@ -65,8 +65,6 @@ struct ProfileButtonsView: View {
         .padding()
     }
 }
-
-
 
 struct ProfileButtonsView_Previews: PreviewProvider {
     static var previews: some View {

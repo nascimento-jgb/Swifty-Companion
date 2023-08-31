@@ -11,15 +11,14 @@ struct ProfileUpperPart: View {
     @ObservedObject var apiUser: APIClient
     
     var body: some View {
+        
         ZStack{
-            
             Circle()
                 .foregroundColor(.white)
                 .frame(width: 160, height: 160)
                 .offset(y: -75)
             
             VStack{
-               
                 if (apiUser.data!.image.link != nil) {
                     AsyncImage(
                         url: URL(string: apiUser.data!.image.link!),

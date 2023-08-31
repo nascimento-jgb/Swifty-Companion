@@ -12,9 +12,8 @@ struct SingleAchievement: View {
         
         var body: some View {
             
-            VStack{
+            VStack(alignment: .leading){
                 HStack(alignment: .center, spacing: 10) {
-                  
                     Image(name)
                         .resizable()
                         .scaledToFit()
@@ -22,6 +21,7 @@ struct SingleAchievement: View {
                         .padding(5)
                     
                     Text("\(name)")
+                        .font(AppFont.body)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding()
                         .foregroundColor(.black)

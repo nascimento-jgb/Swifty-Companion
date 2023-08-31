@@ -12,14 +12,14 @@ struct XPBarView: View {
     var xpPercentage: Double
     
     var body: some View {
+        
         VStack(alignment: .leading) {
             Text("Lvl \(String(format: "%.2f", xpPercentage))")
-                .font(AppFont.title2)
+                .font(AppFont.subtitle)
                 .foregroundColor(.white)
             
             ProgressBar(apiUser: apiUser, value: xpPercentage, maxValue: 25)
                 .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-            
         }
         .padding()
     }

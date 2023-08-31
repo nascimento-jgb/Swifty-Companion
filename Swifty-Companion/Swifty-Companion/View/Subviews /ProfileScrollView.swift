@@ -12,8 +12,8 @@ struct ProfileScrollView: View {
     @Binding var selectedButton: String
     
     var body: some View {
+        
         ScrollView{
-            
            if (selectedButton == "Projects") {
                ForEach(apiUser.data?.projects_users.filter { $0.cursus_ids.first == 21 } ?? [], id: \.id) { projectUser in
                    SingleProject(name: projectUser.project.name, marked_at: projectUser.marked_at ?? "Not informed", score: projectUser.final_mark ?? 0, status: projectUser.status)
@@ -27,11 +27,10 @@ struct ProfileScrollView: View {
            } else if (selectedButton == "Skills") {
                ForEach(apiUser.data?.cursus_users ?? [], id: \.level) { cursus_user in
                    ForEach(cursus_user.skills, id: \.id) { skills in
-                       SingleSkill(name: skills.name , level: skills.level)
+                       SingleSkill(name: skills.name , level: skills.level, color: apiUser.coalition?.color ?? "black")
                    }
                }
            }
-            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))

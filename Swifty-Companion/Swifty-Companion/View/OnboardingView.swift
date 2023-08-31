@@ -37,25 +37,25 @@ struct OnboardingView: View {
                             .task {
                                 await authenticateAndFetchData()
                             }
+                        }
                     }
                 }
             }
+    
+        private func fetchData() async {
+            do {
+                    try await apiClient.fetchData(login: searchBarText)
+                    isDataAvailable = true
+                } catch {
+                    print("Error fetching data: \(error)")
+                }
         }
-    
-    private func fetchData() async {
-        do {
-                try await apiClient.fetchData(login: searchBarText)
-                isDataAvailable = true
-            } catch {
-                print("Error fetching data: \(error)")
-            }
-    }
-    
-    private func authenticateAndFetchData() async {
-        authManager.authenticate()
-        apiClient.authenticationManager = authManager
-        await fetchData()
-    }
+        
+        private func authenticateAndFetchData() async {
+            authManager.authenticate()
+            apiClient.authenticationManager = authManager
+            await fetchData()
+        }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
