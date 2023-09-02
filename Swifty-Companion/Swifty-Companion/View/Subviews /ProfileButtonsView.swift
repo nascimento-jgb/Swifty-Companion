@@ -13,56 +13,30 @@ struct ProfileButtonsView: View {
     
     var body: some View {
         HStack{
-            Button{
-                selectedButton = "Projects"
-            } label: {
-                Text("Projects")
-                    .font(AppFont.body3)
-                    .padding(4)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 40)
-                    .background(Color(hex: apiUser.coalition!.color))
-                    .foregroundColor(.white)
-                    .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
-                    .cornerRadius(8, corners: [.topLeft])
-                    .shadow(color: Color(hex: apiUser.coalition!.color), radius: 20, x: 0, y: 10)
-            }
-            
+            generateButton(param: "Projects")
             Spacer()
-            
-            Button{
-                selectedButton = "Achievements"
-            } label: {
-                Text("Achievements")
-                    .font(AppFont.body3)
-                    .padding(4)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 40)
-                    .background(Color(hex: apiUser.coalition!.color))
-                    .foregroundColor(.white)
-                    .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
-                    .cornerRadius(8, corners: [.topLeft])
-                    .shadow(color: Color(hex: apiUser.coalition!.color), radius: 20, x: 0, y: 10)
-            }
-            
+            generateButton(param: "Achievements")
             Spacer()
-            
-            Button{
-                selectedButton = "Skills"
-            } label: {
-                Text("Skills")
-                    .font(AppFont.body3)
-                    .padding(4)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 40)
-                    .background(Color(hex: apiUser.coalition!.color))
-                    .foregroundColor(.white)
-                    .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
-                    .cornerRadius(8, corners: [.topLeft])
-                    .shadow(color: Color(hex: apiUser.coalition!.color), radius: 20, x: 0, y: 10)
-            }
+            generateButton(param: "Skills")
         }
         .padding()
+    }
+    
+    private func generateButton(param: String) -> Button<some View> {
+        return   Button{
+            selectedButton = param
+        } label: {
+            Text(param)
+                .font(AppFont.body3)
+                .padding(4)
+                .frame(maxWidth: .infinity)
+                .frame(height: 40)
+                .background(Color(hex: apiUser.coalition?.color ?? "#ffffff") )
+                .foregroundColor(.white)
+                .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
+                .cornerRadius(8, corners: [.topLeft])
+                .shadow(color: Color(hex: apiUser.coalition?.color ?? "#ffffff"), radius: 20, x: 0, y: 10)
+        }
     }
 }
 

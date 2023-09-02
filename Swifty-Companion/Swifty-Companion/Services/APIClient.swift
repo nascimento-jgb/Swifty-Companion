@@ -89,12 +89,17 @@ class APIClient : ObservableObject {
     }
     
     func coalitionImage(apiUser: APIClient) -> String {
-        if apiUser.coalition!.name == "The Foragers"{
-            return "foragers_background"
-        } else if apiUser.coalition!.name == "The Guards" {
-            return "guards_background"
+        if let coalitionName = apiUser.coalition?.name {
+            if coalitionName == "The Foragers" {
+                return "foragers_background"
+            } else if coalitionName == "The Guards" {
+                return "guards_background"
+            } else {
+                return "builders_background"
+            }
         } else {
-            return "builders_background"
+            // Handle the case when apiUser.coalition is nil
+            return "intra-background"
         }
     }
     

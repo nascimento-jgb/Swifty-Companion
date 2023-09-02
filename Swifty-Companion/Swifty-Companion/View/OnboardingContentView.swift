@@ -37,8 +37,8 @@ struct OnboardingContentView: View {
                         searchBarText = newValue.lowercased()
                     }
                 
-                Button {
-                    Task.init(priority: .userInitiated) {
+                Button{
+                    Task{
                         await fetchData()
                     }
                 } label: {
@@ -51,7 +51,6 @@ struct OnboardingContentView: View {
                         .cornerRadius(20, corners: [.topRight, .bottomLeft, .bottomRight])
                         .cornerRadius(8, corners: [.topLeft])
                         .shadow(color: .gray, radius: 20, x: 0, y: 10)
-                        
                 }
                 .disabled(searchBarText.isEmpty)
                 

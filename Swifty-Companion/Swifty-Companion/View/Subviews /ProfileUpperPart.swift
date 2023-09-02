@@ -19,7 +19,7 @@ struct ProfileUpperPart: View {
                 .offset(y: -75)
             
             VStack{
-                if (apiUser.data!.image.link != nil) {
+                if (apiUser.data?.image.link != nil) {
                     AsyncImage(
                         url: URL(string: apiUser.data!.image.link!),
                         content: { image in
@@ -28,8 +28,8 @@ struct ProfileUpperPart: View {
                                 .scaledToFit()
                                 .frame(width: 140, height: 140)
                                 .clipShape(Circle())
-                                .overlay(Circle().stroke(Color(hex: apiUser.coalition!.color), lineWidth: 2))
-                                .padding(.top, 15)
+                                .overlay(Circle().stroke(Color(hex: apiUser.coalition?.color ?? "#ffffff"), lineWidth: 2))
+                                .padding(.top, 5)
                         },
                         placeholder: {
                             ProgressView()
@@ -37,7 +37,7 @@ struct ProfileUpperPart: View {
                     )
                 }
                 else {
-                    Image("Incognito")
+                    Image("incognito")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 100, height: 100)
@@ -46,12 +46,12 @@ struct ProfileUpperPart: View {
                         .padding(.top, 15)
                 }
                 
-                Text(apiUser.data!.login + " - " + apiUser.coalition!.name)
+                Text((apiUser.data?.login ?? "Not given") + " - " + (apiUser.coalition?.name ?? "Not givem"))
                     .padding()
                     .foregroundColor(.white)
                     .font(AppFont.title)
 
-                Text(apiUser.data!.location ?? "N/A")
+                Text(apiUser.data?.location ?? "N/A")
                     .padding(.top, 1)
                     .foregroundColor(.white)
                     .font(AppFont.subtitle)

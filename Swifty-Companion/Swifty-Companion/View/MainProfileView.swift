@@ -9,11 +9,14 @@ import SwiftUI
 
 struct MainProfileView: View {
     @ObservedObject var apiUser: APIClient
+    
+    @Binding var isDataAvailable: Bool
+    @Binding var searchBarText: String
     @State private var selectedButton = "Projects"
+    
     
     var body: some View {
         ZStack{
-            
             Image(apiUser.coalitionImage(apiUser: apiUser))
                 .resizable()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -29,14 +32,17 @@ struct MainProfileView: View {
             .padding()
         }
         .frame(maxWidth: .infinity)
+        .onDisappear{
+            isDataAvailable = false
+            searchBarText = ""
+        }
     }
-    
 }
 
 struct MainProfileView_Previews: PreviewProvider {
     static var previews: some View {
         let apiClient = APIClient(authenticationManager: AuthenticationManager())
-        return MainProfileView(apiUser: apiClient)
+        return MainProfileView(apiUser: apiClient, isDataAvailable: .constant(true), searchBarText: .constant("test"))
             .environmentObject(AuthenticationManager())
     }
 }
