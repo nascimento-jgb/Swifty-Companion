@@ -42,31 +42,31 @@ class AuthenticationManager : ObservableObject {
         return nil
     }
     
-    func generateState(withLength length: Int) ->String{
+    func generateState(withLength length: Int) -> String {
         let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let state = (0..<length).map{_ in characters.randomElement()!}
         return String(state)
     }
     
     @MainActor
-            func authenticate() {
-                guard let oauthSwift = oauthSwift else {
-                    return
+    func authenticate() {
+        guard let oauthSwift = oauthSwift else {
+            return
+        }
+        
+        let _ = oauthSwift.authorize(
+            withCallbackURL: URL(string: "mycoolapp://oauth-callback")!,
+            scope: "public",
+            state: generateState(withLength: 10),
+            completionHandler: { result in
+                switch result {
+                case .success(let (credential, _, _)):
+                    self.oauthToken = credential.oauthToken
+                    print("OAuth token: \(credential.oauthToken)")
+                case .failure(let error):
+                    print("Authentication error: \(error.localizedDescription)")
                 }
-                
-                let _ = oauthSwift.authorize(
-                    withCallbackURL: URL(string: "mycoolapp://oauth-callback")!,
-                    scope: "public",
-                    state: generateState(withLength: 10),
-                    completionHandler: { result in
-                        switch result {
-                        case .success(let (credential, _, _)):
-                            self.oauthToken = credential.oauthToken
-                            print("OAuth token: \(credential.oauthToken)")
-                        case .failure(let error):
-                            print("Authentication error: \(error.localizedDescription)")
-                        }
-                    }
-                )
             }
+        )
+    }
 }
