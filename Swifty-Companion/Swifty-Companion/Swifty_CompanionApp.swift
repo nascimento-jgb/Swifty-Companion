@@ -8,7 +8,7 @@
     import SwiftUI
     import OAuthSwift
 
-        @main
+    @main
     struct Swifty_CompanionApp: App {
         var body: some Scene {
             WindowGroup {

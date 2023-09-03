@@ -10,6 +10,8 @@ import OAuthSwift
 
 class AuthenticationManager : ObservableObject {
     @Published var oauthToken: String? = nil
+    
+    // Initialize OAuth2Swift instance lazily
     private lazy var oauthSwift: OAuth2Swift? = initializeOAuthSwift()
     
     private func initializeOAuthSwift() -> OAuth2Swift? {
@@ -27,6 +29,7 @@ class AuthenticationManager : ObservableObject {
         }
     }
     
+    // Load API credentials from a plist file
     private func loadAPIConfig() -> (apiSecret: String, apiUID: String)? {
         if let plistURL = Bundle.main.url(forResource: "42API-Info", withExtension: "plist"),
            let plistData = try? Data(contentsOf: plistURL) {
@@ -42,6 +45,7 @@ class AuthenticationManager : ObservableObject {
         return nil
     }
     
+    // Generate a random state string
     func generateState(withLength length: Int) -> String {
         let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let state = (0..<length).map{_ in characters.randomElement()!}
