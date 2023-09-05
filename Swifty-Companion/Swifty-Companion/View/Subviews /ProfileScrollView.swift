@@ -35,8 +35,10 @@ struct ProfileScrollView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
-        .background(.white)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color.white)
+        )
         .padding(5)
     }
 }

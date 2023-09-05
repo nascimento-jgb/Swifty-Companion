@@ -8,7 +8,7 @@
 import Foundation
 import OAuthSwift
 
-class AuthenticationManager : ObservableObject {
+final class AuthenticationManager : ObservableObject {
     @Published var oauthToken: String? = nil
     
     // Initialize OAuth2Swift instance lazily

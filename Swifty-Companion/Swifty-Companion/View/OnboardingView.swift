@@ -28,7 +28,7 @@ struct OnboardingView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .ignoresSafeArea()
                     
-                    OnboardingContentView(searchBarText: $searchBarText, fetchData: fetchData)
+                    OnboardingContentView(searchBarText: $searchBarText, localFetchData: localFetchData)
                         .padding(50)
                         .background(.regularMaterial)
                         .mask(RoundedRectangle(cornerRadius: 20, style: .continuous))
@@ -38,7 +38,7 @@ struct OnboardingView: View {
                         .task {
                             await authenticateAndFetchData()
                         }
-                    
+                    //navigationDestination needed to be substituted by navigationLink
                     NavigationLink("", destination: MainProfileView(apiUser: apiClient, isDataAvailable: $isDataAvailable, searchBarText: $searchBarText), isActive: $isDataAvailable)
                 }
                 .alert(isPresented: $showErrorAlert) {
@@ -52,7 +52,7 @@ struct OnboardingView: View {
             .accentColor(.white)
     }
     
-    private func fetchData() async {
+    private func localFetchData() async {
         do {
             try await apiClient.fetchData(login: searchBarText)
             isDataAvailable = true
@@ -70,7 +70,7 @@ struct OnboardingView: View {
         }
         
         if !searchBarText.isEmpty {
-            await fetchData()
+            await localFetchData()
         }
     }
     

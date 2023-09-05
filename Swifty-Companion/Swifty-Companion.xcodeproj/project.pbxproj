@@ -118,8 +118,8 @@
 			children = (
 				B98EC8EC2A9627B2006DCF27 /* Subviews  */,
 				B98EC8C42A912396006DCF27 /* OnboardingView.swift */,
-				B98EC8E22A938B58006DCF27 /* MainProfileView.swift */,
 				B98EC8FA2A9A1A21006DCF27 /* OnboardingContentView.swift */,
+				B98EC8E22A938B58006DCF27 /* MainProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

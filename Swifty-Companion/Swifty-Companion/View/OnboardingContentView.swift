@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingContentView: View {
     @Binding var searchBarText: String
-    var fetchData: () async -> Void
+    var localFetchData: () async -> Void
     
     var body: some View {
         ZStack {
@@ -39,7 +39,7 @@ struct OnboardingContentView: View {
                 
                 Button{
                     Task{
-                        await fetchData()
+                        await localFetchData()
                     }
                 } label: {
                     Text("Info Request")
@@ -63,11 +63,11 @@ struct OnboardingContentView: View {
 struct OnboardingContentView_Previews: PreviewProvider {
     @State static var searchText: String = ""
     
-    static func fetchData() async {
+    static func localFetchData() async {
         // test data fetching logic here
     }
     
     static var previews: some View {
-        OnboardingContentView(searchBarText: $searchText, fetchData: fetchData)
+        OnboardingContentView(searchBarText: $searchText, localFetchData: localFetchData)
     }
 }

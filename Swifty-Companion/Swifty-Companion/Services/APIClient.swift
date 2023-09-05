@@ -9,36 +9,35 @@ import Foundation
 enum APIClientError: Error {
     case userNotFound
     case apiError(Error)
+    case missingAccessToken
+    case invalidURL
 }
 
-class APIClient : ObservableObject {
-    @Published var data: User?
-    @Published var coalition: Coalition?
-    @Published var isDataCollected: Bool = false
-    @Published var isNotExisting: Bool = false
+// APIClient is a class that handles API requests and manages user data.
+final class APIClient : ObservableObject {
+    @Published var data: User? // User data fetched from the API.
+    @Published var coalition: Coalition? // User's coalition data fetched from the API.
     
     private let baseURL: String = "https://api.intra.42.fr/v2/users/"
-    public var authenticationManager: AuthenticationManager
     private let urlSession = URLSession.shared
+    public var authenticationManager: AuthenticationManager
     
+    
+    // Initializes the APIClient with an AuthenticationManager.
     init(authenticationManager: AuthenticationManager) {
         self.authenticationManager = authenticationManager
     }
     
-    func updateAuthenticationManager(_ manager: AuthenticationManager) {
-            authenticationManager = manager
-        }
-    
+    // Fetches user info from the API.
     func getUserInfo(login: String) async throws -> User? {
+        // Check if access token is available.
         guard let accessToken = authenticationManager.oauthToken else {
-            let error = NSError(domain: "YourAppErrorDomain", code: 401, userInfo: [NSLocalizedDescriptionKey: "Access token is missing"])
-            throw error
+            throw APIClientError.missingAccessToken
         }
 
         let urlString = baseURL + login.lowercased()
         guard let requestUrl = URL(string: urlString) else {
-            print("Error: Url is empty")
-            return nil
+            throw APIClientError.invalidURL
         }
 
         var request = URLRequest(url: requestUrl)
@@ -54,25 +53,23 @@ class APIClient : ObservableObject {
         }
     }
     
-    
+    // Fetches user's coalition info from the API.
     func getUserCoalition(login: String) async throws -> Coalition? {
+        // Check if access token is available.
         guard let accessToken = authenticationManager.oauthToken else {
-            let error = NSError(domain: "YourAppErrorDomain", code: 401, userInfo: [NSLocalizedDescriptionKey: "Access token is missing"])
-            throw error
+            throw APIClientError.missingAccessToken
         }
         
         let urlString = baseURL + login.lowercased() + "/coalitions"
         guard let requestUrl = URL(string: urlString) else {
-            print("Error: Url is empty")
-            return nil
+            throw APIClientError.invalidURL
         }
         
         var request = URLRequest(url: requestUrl)
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         
         let (data, _) = try await urlSession.data(for: request)
-        let decoder = JSONDecoder()
-        let currentUserCoalition = try decoder.decode([Coalition].self, from: data)
+        let currentUserCoalition = try JSONDecoder().decode([Coalition].self, from: data)
         let currentUserCoalitionSize = currentUserCoalition.count - 1
         
         guard !currentUserCoalition.isEmpty else {
@@ -84,10 +81,10 @@ class APIClient : ObservableObject {
                 return currentUserCoalition[i]
             }
         }
-        
         return nil
     }
     
+    // Returns the image name based on the coalition name.
     func coalitionImage(apiUser: APIClient) -> String {
         if let coalitionName = apiUser.coalition?.name {
             if coalitionName == "The Foragers" {
@@ -103,18 +100,18 @@ class APIClient : ObservableObject {
         }
     }
     
+    // Fetches user data and coalition data from the API.
     @MainActor
         func fetchData (login: String) async throws {
             do {
                 data = try await getUserInfo(login: login)
                 coalition = try await getUserCoalition(login: login)
-                isDataCollected = true
             } catch APIClientError.userNotFound {
-                    throw APIClientError.userNotFound
-                } catch {
-                    throw APIClientError.apiError(error)
-                }
-        }
+                throw APIClientError.userNotFound
+            } catch {
+                throw APIClientError.apiError(error)
+            }
+    }
 }
 
 

@@ -16,25 +16,27 @@ struct MainProfileView: View {
     
     
     var body: some View {
-        ZStack{
-            Image(apiUser.coalitionImage(apiUser: apiUser))
-                .resizable()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea()
-            
-            VStack(alignment: .center){
-                ProfileUpperPart(apiUser: apiUser)
-                
-                ProfileButtonsView(apiUser: apiUser, selectedButton: $selectedButton)
-                
-                ProfileScrollView(apiUser: apiUser, selectedButton: $selectedButton)
+        NavigationStack{
+            ZStack{
+                Image(apiUser.coalitionImage(apiUser: apiUser))
+                    .resizable()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .ignoresSafeArea()
+
+                VStack(alignment: .center){
+                    ProfileUpperPart(apiUser: apiUser)
+
+                    ProfileButtonsView(apiUser: apiUser, selectedButton: $selectedButton)
+
+                    ProfileScrollView(apiUser: apiUser, selectedButton: $selectedButton)
+                }
+                .padding()
             }
-            .padding()
-        }
-        .frame(maxWidth: .infinity)
-        .onDisappear{
-            isDataAvailable = false
-            searchBarText = ""
+            .frame(maxWidth: .infinity)
+            .onDisappear{
+                isDataAvailable = false
+                searchBarText = ""
+            }
         }
     }
 }

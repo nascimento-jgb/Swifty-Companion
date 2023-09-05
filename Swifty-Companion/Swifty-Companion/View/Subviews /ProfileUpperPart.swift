@@ -46,7 +46,7 @@ struct ProfileUpperPart: View {
                         .padding(.top, 15)
                 }
                 
-                Text((apiUser.data?.login ?? "Not given") + " - " + (apiUser.coalition?.name ?? "Not givem"))
+                Text((apiUser.data?.login ?? "Not given") + " - " + (apiUser.coalition?.name ?? "Not given"))
                     .padding()
                     .foregroundColor(.white)
                     .font(AppFont.title)
