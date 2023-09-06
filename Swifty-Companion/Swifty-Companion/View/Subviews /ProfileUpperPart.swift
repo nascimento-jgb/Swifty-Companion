@@ -32,9 +32,10 @@ struct ProfileUpperPart: View {
                                 .padding(.top, 5)
                         },
                         placeholder: {
-                            Image("incognito")
+                            Image(systemName: "circle.fill")
                                 .resizable()
                                 .scaledToFit()
+                                .foregroundColor(.white)
                                 .frame(width: 140, height: 140)
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color.white, lineWidth: 2))

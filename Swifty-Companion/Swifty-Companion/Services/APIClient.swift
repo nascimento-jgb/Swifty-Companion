@@ -18,6 +18,7 @@ final class APIClient : ObservableObject {
     @Published var data: User? // User data fetched from the API.
     @Published var coalition: Coalition? // User's coalition data fetched from the API.
     
+    
     private let baseURL: String = "https://api.intra.42.fr/v2/users/"
     private let urlSession = URLSession.shared
     public var authenticationManager: AuthenticationManager

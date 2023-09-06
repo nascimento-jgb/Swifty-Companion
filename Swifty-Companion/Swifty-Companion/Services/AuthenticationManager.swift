@@ -10,10 +10,14 @@ import OAuthSwift
 
 final class AuthenticationManager : ObservableObject {
     @Published var oauthToken: String? = nil
+    @Published var refreshToken: String? = nil
+    @Published var tokenExpirationDate: Date? = nil
+
     
     // Initialize OAuth2Swift instance lazily
     private lazy var oauthSwift: OAuth2Swift? = initializeOAuthSwift()
     
+    // Initialize OAuth2Swift instance with API credentials
     private func initializeOAuthSwift() -> OAuth2Swift? {
         if let apiConfig = loadAPIConfig() {
             let oauthswift = OAuth2Swift(
@@ -52,6 +56,38 @@ final class AuthenticationManager : ObservableObject {
         return String(state)
     }
     
+    // Refresh the access token using the refresh token
+    func refreshAccessToken() {
+        guard let oauthSwift = oauthSwift,
+              let refreshToken = refreshToken else {
+            return
+        }
+
+        oauthSwift.renewAccessToken(withRefreshToken: refreshToken) { result in
+               switch result {
+               case .success(let (tokenSuccess, _, _)):
+                   self.oauthToken = tokenSuccess.oauthToken
+                   self.refreshToken = tokenSuccess.oauthRefreshToken
+                   self.tokenExpirationDate = tokenSuccess.oauthTokenExpiresAt ?? Date()
+                   print("Refreshed OAuth token: \(tokenSuccess.oauthToken)")
+               case .failure(let error):
+                   print("Failed to refresh access token: \(error.localizedDescription)")
+               }
+           }
+    }
+    
+    // Check if the access token has expired and refresh it if needed
+    func checkTokenExpiration() {
+        guard let tokenExpirationDate = tokenExpirationDate else {
+            return
+        }
+
+        if Date() > tokenExpirationDate {
+            refreshAccessToken()
+        }
+    }
+    
+    // Authenticate the user using OAuth2Swift
     @MainActor
     func authenticate() {
         guard let oauthSwift = oauthSwift else {
@@ -66,6 +102,8 @@ final class AuthenticationManager : ObservableObject {
                 switch result {
                 case .success(let (credential, _, _)):
                     self.oauthToken = credential.oauthToken
+                    self.refreshToken = credential.oauthRefreshToken
+                    self.tokenExpirationDate = credential.oauthTokenExpiresAt ?? Date()
                     print("OAuth token: \(credential.oauthToken)")
                 case .failure(let error):
                     print("Authentication error: \(error.localizedDescription)")
