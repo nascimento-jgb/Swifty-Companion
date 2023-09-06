@@ -32,7 +32,13 @@ struct ProfileUpperPart: View {
                                 .padding(.top, 5)
                         },
                         placeholder: {
-                            ProgressView()
+                            Image("incognito")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 140, height: 140)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                                .padding(.top, 5)
                         }
                     )
                 }
