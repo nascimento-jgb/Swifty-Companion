@@ -9,11 +9,9 @@ import SwiftUI
 
 struct MainProfileView: View {
     @ObservedObject var apiUser: APIClient
-    
     @Binding var isDataAvailable: Bool
     @Binding var searchBarText: String
     @State private var selectedButton = "Projects"
-    
     
     var body: some View {
         NavigationStack{

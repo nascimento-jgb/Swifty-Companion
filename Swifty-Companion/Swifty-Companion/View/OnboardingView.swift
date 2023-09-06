@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @StateObject var authManager = AuthenticationManager()
+    @StateObject private var authManager = AuthenticationManager()
     @StateObject private var apiClient: APIClient = APIClient(authenticationManager: AuthenticationManager())
-    
     @State private var searchBarText: String = ""
     @State private var isDataAvailable: Bool = false
     @State private var showErrorAlert: Bool = false
